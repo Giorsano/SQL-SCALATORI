@@ -96,3 +96,8 @@ order by scalata.anno
 /* Per ogni nazione N, calcolare il numero medio di
 scalate effettuate all’anno in N da scalatori nati in
 nazioni diverse da N. */
+
+SELECT nazione.nome, count(scalata.anno) 
+from scalatore join scalata on scalata.scalatore = scalatore.cf
+        join nazione on nazione.nome = scalata.nazione and nazione.nome != scalatore.nazionenascita
+group by nazione.nome

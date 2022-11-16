@@ -81,7 +81,12 @@ stesso continente devono essere mostrati in tuple contigue, e
 le tuple relative allo stesso continente devono essere ordinate
 per anno.*/
 
-
+SELECT nazione.nome, scalata.anno, count(scalata.anno) > 1, count(scalata.scalatore)
+FROM scalata join nazione on scalata.nazione = nazione.nome
+        join scalatore on scalatore.cf = scalata.scalatore
+GROUP BY nazione.nome, scalata.anno
+HAVING count(scalata.scalatore) > 1
+order by scalata.anno
 
 
 
